@@ -1,14 +1,15 @@
 import React from 'react';
 import { Routes, Route } from "react-router-dom";
 import './App.css';
-import Testexd from './Component/Teste'
+import Home from './components/Home/Home';
 
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Testexd />}>
+        <Route path="/" element={<Home
+        />}>
         </Route>
       </Routes>
     </div>
