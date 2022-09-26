@@ -1,9 +1,10 @@
 import Axios from 'axios';
-import { useState, useEffect } from "react";
-import { Pokemons } from '../interfaces/index';
+import { useState, useContext, useEffect } from "react";
+import { PokedexContext } from '../context/PokedexContext';
 
 export function useApi(url: string) {
-  const [pokemons, setPokemons] = useState<Pokemons[]>([])
+
+  const { setPokemons } = useContext(PokedexContext)
   const [pokemon, setPokemon] = useState({
     name: '',
     sprites: {
@@ -14,11 +15,12 @@ export function useApi(url: string) {
   const [error, setError] = useState<Error | null>(null)
 
   useEffect(() => {
-    setIsLoading(true)
+
     Axios.get(url)
       .then(response => {
-        setPokemons(response.data.results)
-        console.log(url)
+        if (response.data.results !== undefined) {
+          setPokemons(response.data.results)
+        }
         setPokemon(response.data)
       })
       .catch(err => {
@@ -29,5 +31,5 @@ export function useApi(url: string) {
       })
   }, [])
 
-  return { pokemon, pokemons, error, isLoading, setIsLoading }
+  return { pokemon, error, isLoading, setIsLoading }
 }

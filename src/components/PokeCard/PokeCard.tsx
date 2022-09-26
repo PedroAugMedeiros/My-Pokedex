@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useApi } from "../../hooks/useApi";
 import './index.css';
+import { PokedexContext } from '../../context/PokedexContext';
 
 function PokeCard(props: any) {
 
-
-  console.log(props.pokemon.url)
   const { pokemon } = useApi(props.pokemon.url)
+
 
   return (
     <div className='pokecard' >
-      <img
+      <div><img
         src={pokemon.sprites.front_default}
-        alt={pokemon.name}
+        alt={props.pokemon.name}
       />
-      <h1>{pokemon.name}</h1>
+        <h1>{props.pokemon.name}</h1> </div>
     </div>
   )
 }
