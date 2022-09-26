@@ -14,8 +14,7 @@ export function useApi(url: string) {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
 
-  useEffect(() => {
-
+  const getPokemons = () => {
     Axios.get(url)
       .then(response => {
         if (response.data.results !== undefined) {
@@ -29,7 +28,11 @@ export function useApi(url: string) {
       .finally(() => {
         setIsLoading(false)
       })
+  }
+
+  useEffect(() => {
+    getPokemons();
   }, [])
 
-  return { pokemon, error, isLoading, setIsLoading }
+  return { pokemon, error, isLoading, setIsLoading, getPokemons }
 }
