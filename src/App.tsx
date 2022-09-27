@@ -7,7 +7,7 @@ import PokeDetailsCard from './components/PokeDetails/PokeDetailsCard'
 
 function App() {
   return (
-    <div className="App">
+    <div className="App bg-teal-400 items-stretch">
       <Routes>
         <Route path="/" element={<Home
         />}>

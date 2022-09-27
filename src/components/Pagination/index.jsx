@@ -31,20 +31,20 @@ const Pagination = (
   }
 
   return (
-    <div className="pagination">
+    <div className="pagination fixed bottom-0 w-full flex flex-row  bg-black-pagination space-x-8 items-center justify-center">
       <button
-        className='pagination-button'
+        className='pagination-button p-2 bg-swap-page-buttons'
         onClick={
           () => handleClick(page - 1, 'prev')}
       >
         <h1>{`<`}</h1>
       </button>
-      <div className='pagination-button show-page-button'
+      <div className='pagination-button show-page-button p-2 px-10 bg-slate-50'
       >
         {`${page}/${lastPage.toFixed(0)}`}
       </div>
       <button
-        className='pagination-button'
+        className='pagination-button bg-swap-page-buttons'
         onClick={() => handleClick(page + 1, 'prox')}
       >
         <h1>{`>`}</h1>

@@ -20,11 +20,12 @@ function PokeCard(props: any) {
     })
   }
 
-  console.log(pokemon)
+
   return (
-    <div className='pokecard' onClick={handleClick} >
+    <div className='pokecard m-2 bg-red-600 w-1/3' onClick={handleClick} >
       <div><img
-        src={pokemon?.sprites.front_default}
+        className='img'
+        src={pokemon?.sprites.other.home.front_default || pokemon?.sprites.front_default}
         alt={props.pokemon.name}
       />
         <h1>{pokemon?.name}</h1> </div>

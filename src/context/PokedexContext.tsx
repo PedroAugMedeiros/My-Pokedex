@@ -10,10 +10,12 @@ const initialValue = {
     url: ''
   },
   searchInput: '',
+  typeFilter: '',
   setPokemons: () => { },
   setShowDetails: () => { },
   setPokemonSelected: () => { },
   setSearchInput: () => { },
+  setTypeFilter: () => { },
 };
 
 export const PokedexContext = createContext<PokedexContextType>(initialValue);
@@ -23,9 +25,10 @@ export const PokedexContextProvider = ({ children }: PokedexContextProps) => {
   const [showDetails, setShowDetails] = useState(initialValue.showDetails)
   const [pokemonSelected, setPokemonSelected] = useState<PokemonSelected>(initialValue.pokemonSelected)
   const [searchInput, setSearchInput] = useState(initialValue.searchInput)
+  const [typeFilter, setTypeFilter] = useState(initialValue.typeFilter)
 
   const contextValue = {
-    pokemons, setPokemons,
+    pokemons, setPokemons, typeFilter, setTypeFilter,
     searchInput, setSearchInput, pokemonSelected, showDetails, setShowDetails, setPokemonSelected
   }
 

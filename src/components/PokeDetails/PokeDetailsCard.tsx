@@ -1,12 +1,15 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useApi } from "../../hooks/useApi";
 import './index.css';
 import { PokedexContext } from '../../context/PokedexContext';
-import { imageApi } from '../../services/api';
+import BackIcon from '../../icons/back-icon.png';
+import { useNavigate } from "react-router-dom";
+
+
 
 function PokeDetailsCard(props: any) {
 
-  const { pokemonSelected } = useContext(PokedexContext);
+  const { pokemonSelected, setShowDetails } = useContext(PokedexContext);
 
   const { pokemon } = useApi(pokemonSelected.url)
 
@@ -47,11 +50,18 @@ function PokeDetailsCard(props: any) {
     width: `${conversor(exp)}%`,
   }
 
+  const navigate = useNavigate();
 
+
+  const handleClick = () => {
+    setShowDetails(false)
+    navigate("/Home");
+  }
 
   console.log(widthStyleAtk.width)
   return (
     <div className='PokeDetailsCard' >
+      <button onClick={handleClick}><img src={BackIcon} /></button>
       <div className='img'> <img src={pokemon?.sprites.other.home.front_default} ></img></div>
       <h1>
         {pokemon?.name}
