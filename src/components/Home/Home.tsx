@@ -1,16 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { api } from '../../services/api';
+import { pokeApi } from '../../services/api';
 import { useApi } from "../../hooks/useApi";
 import PokeCard from '../PokeCard/PokeCard'
 import './index.css';
 import { PokedexContext } from '../../context/PokedexContext';
 import Pagination from '../../components/Pagination/index';
+import { Navigate } from 'react-router-dom';
 
 function Home() {
   const [startPokemon, setStartPokemon] = useState(0)
   const [limit, setLimit] = useState(20)
 
-  const { pokemons } = useContext(PokedexContext);
+  const { pokemons, showDetails } = useContext(PokedexContext);
 
   useEffect(() => {
     getPokemons()
@@ -24,8 +25,13 @@ function Home() {
   }
 
 
-  const { isLoading, getPokemons } = useApi(api(startPokemon, limit))
+  const { isLoading, getPokemons } = useApi(pokeApi(startPokemon, limit))
 
+  if (showDetails) {
+    return (
+      <Navigate to="/Details"></Navigate>
+    )
+  }
   return (
     <div>
       <div>
