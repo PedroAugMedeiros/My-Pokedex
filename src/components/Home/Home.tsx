@@ -67,9 +67,9 @@ function Home() {
   return (
     <div>
       <header className='flex justify-center items-center m-0'>
-        <img className='w-2/3 m-3' src={PokeTitle}></img>
+        <img className='w-3/4 m-3' src={PokeTitle}></img>
         {showSearchArea ?
-          <><SearchArea /><button onClick={() => handleClick(false)}><img className='w-4/4 m-3' src={CloseMenuIcon}></img></button></> : <button onClick={() => handleClick(true)}><img className='w-1/3 ml-8' src={SearchIcon}></img></button>}
+          <><SearchArea /><button onClick={() => handleClick(false)}><img className='w-4/4 m-3' src={CloseMenuIcon}></img></button></> : <button onClick={() => handleClick(true)}><img className='flex justify-center items-center w-1/2 m-0' src={SearchIcon}></img></button>}
       </header>
 
       {filtredPokemons.length < 1 ? <h1>Não há Pokemons com esse nome</h1> : null}
