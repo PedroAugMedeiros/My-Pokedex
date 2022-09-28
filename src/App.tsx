@@ -3,11 +3,11 @@ import { Routes, Route } from "react-router-dom";
 import './App.css';
 import Home from './components/Home/Home';
 import PokeDetailsCard from './components/PokeDetails/PokeDetailsCard'
-
+import './index.css'
 
 function App() {
   return (
-    <div className="App bg-teal-400 items-stretch">
+    <div className="App w-full h-full bg-repeat bg-background-pokedex items-stretch">
       <Routes>
         <Route path="/" element={<Home
         />}>

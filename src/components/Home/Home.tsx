@@ -13,21 +13,20 @@ import PokeTitle from '../../Images/Title.png'
 
 function Home() {
   const [startPokemon, setStartPokemon] = useState(0)
-  const [limit, setLimit] = useState(6)
+  const [limit, setLimit] = useState(20)
   const [showSearchArea, setShowSearchArea] = useState(false)
-
   const { isLoading, getPokemons } = useApi(pokeApi)
-
 
   const { pokemons, showDetails, searchInput, setSearchInput
   } = useContext(PokedexContext);
+
+
+
 
   useEffect(() => {
     getPokemons()
     RenderPokeCards()
   }, [startPokemon, limit])
-
-  console.log(pokemons)
 
   const handleClick = (show: boolean) => {
     if (show === false) {
@@ -39,7 +38,6 @@ function Home() {
   const RenderPokeCards = () => {
 
     if (searchInput !== '') {
-
       return pokemons.filter((item) => item.name.includes(searchInput)).map((pokemon, index) => {
         if (index >= startPokemon && index < startPokemon + limit) {
           return (<PokeCard pokemon={pokemon} />)
@@ -58,26 +56,28 @@ function Home() {
     )
   }
 
+  const filtredPokemons = RenderPokeCards();
+
   if (showDetails) {
     return (
       <Navigate to="/Details"></Navigate>
     )
   }
 
-
   return (
     <div>
-      <header>
-        <img src={PokeTitle}></img>
-
+      <header className='flex justify-center items-center m-0'>
+        <img className='w-2/3 m-3' src={PokeTitle}></img>
+        {showSearchArea ?
+          <><SearchArea /><button onClick={() => handleClick(false)}><img className='w-4/4 m-3' src={CloseMenuIcon}></img></button></> : <button onClick={() => handleClick(true)}><img className='w-1/3 ml-8' src={SearchIcon}></img></button>}
       </header>
-      {showSearchArea ?
-        <><SearchArea /><button onClick={() => handleClick(false)}><img className='w-1/1' src={CloseMenuIcon}></img></button></> : <button onClick={() => handleClick(true)}><img className='w-1/4' src={SearchIcon}></img></button>}
 
-      <div className="pokedex w-full flex flex-wrap justify-center mb-10   items-stretch">
+      {filtredPokemons.length < 1 ? <h1>Não há Pokemons com esse nome</h1> : null}
+      <div className="pokedex w-full flex flex-wrap justify-center mb-full">
         {isLoading ? <h1>Loading</h1> :
           RenderPokeCards()
         }
+
       </div>
       <div>
         <Pagination

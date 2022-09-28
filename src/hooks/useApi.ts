@@ -10,6 +10,7 @@ export function useApi(url: string) {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
   const [image, setImage] = useState()
+  const [type, setType] = useState([''])
 
   const getPokemons = () => {
 
@@ -17,10 +18,11 @@ export function useApi(url: string) {
       .then(response => {
         if (response.data.results !== undefined) {
           setPokemons(response.data.results)
-          console.log(url)
+
         }
         setPokemon(response.data)
         setImage(response.data)
+        setType(response.data.types.map((el: any) => el.type.name))
       })
       .catch(err => {
         setError(err);
@@ -30,9 +32,11 @@ export function useApi(url: string) {
       })
   }
 
+  const mainType = type.shift()
+
   useEffect(() => {
     getPokemons();
   }, [])
 
-  return { image, pokemon, error, isLoading, setIsLoading, getPokemons }
+  return { image, mainType, pokemon, error, isLoading, setIsLoading, getPokemons }
 }

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './index.css';
 
 const Pagination = (
   props) => {
@@ -31,20 +30,20 @@ const Pagination = (
   }
 
   return (
-    <div className="pagination fixed bottom-0 w-full flex flex-row  bg-black-pagination space-x-8 items-center justify-center">
+    <div className="pagination fixed bottom-0 w-full flex flex-row  bg-black-pagination space-x-4 items-center justify-center">
       <button
-        className='pagination-button p-2 bg-swap-page-buttons'
+        className='pagination-button rounded-md w-1/4  bg-swap-page-buttons p-4 text-4xl'
         onClick={
           () => handleClick(page - 1, 'prev')}
       >
         <h1>{`<`}</h1>
       </button>
-      <div className='pagination-button show-page-button p-2 px-10 bg-slate-50'
+      <div className='pagination-button m-0 show-page-button p-5 my-3 bg-slate-50 text-4xl rounded-md'
       >
         {`${page}/${lastPage.toFixed(0)}`}
       </div>
       <button
-        className='pagination-button bg-swap-page-buttons'
+        className='pagination-button w-1/4 bg-swap-page-buttons p-4 text-4xl rounded-md'
         onClick={() => handleClick(page + 1, 'prox')}
       >
         <h1>{`>`}</h1>

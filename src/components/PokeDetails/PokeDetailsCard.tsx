@@ -25,7 +25,6 @@ function PokeDetailsCard(props: any) {
 
   const conversor = (stat: any) => {
     const initialNumber = stat?.toFixed(0) * 100
-    console.log(initialNumber)
     const converted = initialNumber / 300
     return converted?.toFixed(0)
   }
@@ -58,7 +57,6 @@ function PokeDetailsCard(props: any) {
     navigate("/Home");
   }
 
-  console.log(widthStyleAtk.width)
   return (
     <div className='PokeDetailsCard' >
       <button onClick={handleClick}><img src={BackIcon} /></button>

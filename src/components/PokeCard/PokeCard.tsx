@@ -1,16 +1,22 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useApi } from "../../hooks/useApi";
-import './index.css';
 import { PokedexContext } from '../../context/PokedexContext';
+import './index.css'
 
 function PokeCard(props: any) {
 
   const { setShowDetails, setPokemonSelected } = useContext(PokedexContext);
-  const { pokemon, getPokemons } = useApi(props.pokemon.url)
+  const { pokemon, getPokemons, mainType } = useApi(props.pokemon.url)
+
+  const pokeStyles = `pokecard m-2 flex  flex-col w-40 text-2xl rounded-lg justify-start items-center h-25 ${mainType} rounded-`
+
 
   useEffect(() => {
     getPokemons()
-  }, [props.pokemon.url])
+  }, [props.pokemon.url, pokeStyles])
+
+
+  console.log(mainType)
 
   const handleClick = () => {
     setShowDetails(true)
@@ -22,13 +28,13 @@ function PokeCard(props: any) {
 
 
   return (
-    <div className='pokecard m-2 bg-red-600 w-1/3' onClick={handleClick} >
-      <div><img
-        className='img'
+    <div id='pokeCard' className={pokeStyles} onClick={handleClick} >
+      <img
+        className='img flex justify-center items-start'
         src={pokemon?.sprites.other.home.front_default || pokemon?.sprites.front_default}
         alt={props.pokemon.name}
       />
-        <h1>{pokemon?.name}</h1> </div>
+      <h1 className='m-3'>{pokemon?.name}</h1>
     </div>
   )
 }

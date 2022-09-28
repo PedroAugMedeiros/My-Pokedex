@@ -8,14 +8,17 @@ export const SearchArea = () => {
 
 
   const handleChange = (valueInput: string) => {
-    setSearchInput(valueInput)
+    setSearchInput(valueInput.toLowerCase())
   }
 
   return (
-    <label>
-      <input
-        value={searchInput} data-testid="input" placeholder='Pesquise Aqui!' onChange={({ target }) => handleChange(target.value)}></input>
-    </label>
+    <div className='fixed'>
+      <label className=''>
+        <input
+          className='p-1 rounded-md  border-none focus:outline-none'
+          value={searchInput} data-testid="input" placeholder='Pesquise Aqui!' onChange={({ target }) => handleChange(target.value)}></input>
+      </label>
+    </div>
   );
 }
 
