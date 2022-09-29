@@ -1,0 +1,33 @@
+.input-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80%;
+  height: 10vh;
+}
+
+.search-input {
+  display: flex;
+  width: 80%;
+  height: 5vh;
+  border: solid black 5px;
+  font-size: 150%;
+}
+
+@media (min-width: 820px) {
+  .input-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 60%;
+    height: 10vh;
+  }
+
+  .search-input {
+    font-size: 250%;
+    width: 150%;
+    height: 10vh;
+    border: solid black 5px;
+  }
+}

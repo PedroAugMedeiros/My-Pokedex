@@ -7,13 +7,28 @@ module.exports = {
     extend: {
       colors: {
         'black-pagination': '#2e2e2e',
-        'swap-page-buttons': '#0d6efd',
+        'swap-page-buttons': '#DC2726',
         'primary-details': '#FFFFFF',
         'second-details': '#43DBAF'
       },
       backgroundImage: {
         'background-pokedex': "url('./Images/background.jpg')",
-      }
+      },
+      screens: {
+        'sm': { 'max': '28px' },
+
+        'md': { 'min': '820px' },
+        // => @media (min-width: 768px and max-width: 1023px) { ... }
+
+        'lg': { 'min': '1024px', 'max': '1279px' },
+        // => @media (min-width: 1024px and max-width: 1279px) { ... }
+
+        'xl': { 'min': '1280px', 'max': '1535px' },
+        // => @media (min-width: 1280px and max-width: 1535px) { ... }
+
+        '2xl': { 'min': '1536px' },
+        // => @media (min-width: 1536px) { ... }
+      },
     },
   },
   plugins: [],

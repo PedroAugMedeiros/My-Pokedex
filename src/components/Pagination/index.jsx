@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
+import './index.css'
 
 const Pagination = (
   props) => {
 
   const [page, setPage] = useState(1)
   const lastPage = 58;
-  console.log(lastPage)
+
   const handleClick = (pageTarget, type) => {
-    console.log(pageTarget)
+    props.setIsLoading(true)
     if (pageTarget < 1 && type === 'prev') {
       props.setNumberPage(1)
       setPage(1)
@@ -36,7 +37,9 @@ const Pagination = (
         onClick={
           () => handleClick(page - 1, 'prev')}
       >
-        <h1>{`<`}</h1>
+        <a href="#header">
+          <h1>{`<`}</h1>
+        </a>
       </button>
       <div className='pagination-button m-0 show-page-button p-5 my-3 bg-slate-50 text-4xl rounded-md'
       >
@@ -46,7 +49,9 @@ const Pagination = (
         className='pagination-button w-1/4 bg-swap-page-buttons p-4 text-4xl rounded-md'
         onClick={() => handleClick(page + 1, 'prox')}
       >
-        <h1>{`>`}</h1>
+        <a href="#header">
+          <h1>{`>`}</h1>
+        </a>
       </button>
     </div>
   );

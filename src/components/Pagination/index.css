@@ -1,0 +1,43 @@
+.pagination {
+  height: 15vh;
+  justify-content: space-evenly;
+  margin-bottom: 0;
+  padding: 8%;
+}
+
+.pagination-button {
+  padding: 5%;
+  border: solid black 3px;
+  text-align: center;
+}
+
+@media (min-width: 280px) {
+  .pagination-button {
+    padding: 2%;
+  }
+}
+
+@media (min-width: 768px) {
+
+  .pagination-button {
+    padding: 5%;
+    font-size: 450%;
+    border: solid black 5px;
+  }
+}
+
+@media (min-width: 1024px) {
+
+  .pagination {
+    position: relative;
+  }
+
+  .pagination-button {
+    width: 20%;
+    padding: 1.5%;
+  }
+
+  .close-menu {
+    right: 10%;
+  }
+}

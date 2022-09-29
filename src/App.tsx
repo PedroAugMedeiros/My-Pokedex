@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route } from "react-router-dom";
 import './App.css';
 import Home from './components/Home/Home';
-import PokeDetailsCard from './components/PokeDetails/PokeDetailsCard'
+import PokeDetailsCard from './components/PokeDetails/PokeDetailsCard';
 import './index.css'
 
 function App() {
+
   return (
-    <div className="App w-full h-full bg-repeat bg-background-pokedex items-stretch">
+    <div className="App w-full h-full bg-repeat bg-[#89C4B2] items-stretch">
       <Routes>
         <Route path="/" element={<Home
         />}>
@@ -18,7 +19,7 @@ function App() {
         />}>
         </Route>
       </Routes>
-    </div>
+    </div >
   );
 }
 

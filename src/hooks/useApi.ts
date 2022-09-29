@@ -13,7 +13,6 @@ export function useApi(url: string) {
   const [type, setType] = useState([''])
 
   const getPokemons = () => {
-
     Axios.get(url)
       .then(response => {
         if (response.data.results !== undefined) {
@@ -28,7 +27,9 @@ export function useApi(url: string) {
         setError(err);
       })
       .finally(() => {
-        setIsLoading(false)
+        setInterval(() => {
+          setIsLoading(false)
+        }, 2000)
       })
   }
 
@@ -37,6 +38,8 @@ export function useApi(url: string) {
   useEffect(() => {
     getPokemons();
   }, [])
+
+  console.log(isLoading)
 
   return { image, mainType, pokemon, error, isLoading, setIsLoading, getPokemons }
 }

@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { PokedexContext } from '../../context/PokedexContext';
+import './index.css';
 
 export const SearchArea = () => {
 
@@ -12,12 +13,10 @@ export const SearchArea = () => {
   }
 
   return (
-    <div className='fixed'>
-      <label className=''>
-        <input
-          className='p-1 rounded-md  border-none focus:outline-none'
-          value={searchInput} data-testid="input" placeholder='Pesquise Aqui!' onChange={({ target }) => handleChange(target.value)}></input>
-      </label>
+    <div className='input-div fixed'>
+      <input
+        className='search-input p-1 rounded-md  border-none focus:outline-none'
+        value={searchInput} data-testid="input" placeholder='Pesquise Aqui!' onChange={({ target }) => handleChange(target.value)}></input>
     </div>
   );
 }

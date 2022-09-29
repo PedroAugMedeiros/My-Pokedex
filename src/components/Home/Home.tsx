@@ -10,18 +10,17 @@ import SearchArea from '../SearchArea';
 import SearchIcon from '../../icons/searchIcon.png';
 import CloseMenuIcon from '../../icons/CloseMenuIcon.png';
 import PokeTitle from '../../Images/Title.png'
+import Transition from '../Transition';
 
 function Home() {
   const [startPokemon, setStartPokemon] = useState(0)
   const [limit, setLimit] = useState(20)
   const [showSearchArea, setShowSearchArea] = useState(false)
-  const { isLoading, getPokemons } = useApi(pokeApi)
+
+  const { getPokemons, isLoading, setIsLoading } = useApi(pokeApi)
 
   const { pokemons, showDetails, searchInput, setSearchInput
   } = useContext(PokedexContext);
-
-
-
 
   useEffect(() => {
     getPokemons()
@@ -56,7 +55,6 @@ function Home() {
     )
   }
 
-  const filtredPokemons = RenderPokeCards();
 
   if (showDetails) {
     return (
@@ -66,15 +64,13 @@ function Home() {
 
   return (
     <div>
-      <header className='flex justify-center items-center m-0'>
-        <img className='w-3/4 m-3' src={PokeTitle}></img>
+      <header id='header' className='flex header justify-center items-center m-0'>
+        <img className='poke-title w-6/4 m-3' src={PokeTitle} alt='pokeTitle'></img>
         {showSearchArea ?
-          <><SearchArea /><button onClick={() => handleClick(false)}><img className='w-4/4 m-3' src={CloseMenuIcon}></img></button></> : <button onClick={() => handleClick(true)}><img className='flex justify-center items-center w-1/2 m-0' src={SearchIcon}></img></button>}
+          <><SearchArea /><button className='close-menu fixed right-5' onClick={() => handleClick(false)}><img className=' w-4/4 m-3' src={CloseMenuIcon} alt='closeMeunu'></img></button></> : <button className='open-search' onClick={() => handleClick(true)}><img className='flex justify-center items-center w-1/2 m-0' src={SearchIcon} alt='open-search'></img></button>}
       </header>
-
-      {filtredPokemons.length < 1 ? <h1>Não há Pokemons com esse nome</h1> : null}
-      <div className="pokedex w-full flex flex-wrap justify-center mb-full">
-        {isLoading ? <h1>Loading</h1> :
+      <div className="pokedex w-full flex flex-wrap justify-center pb-60">
+        {isLoading ? <Transition setIsLoading={setIsLoading} /> :
           RenderPokeCards()
         }
 
@@ -86,6 +82,7 @@ function Home() {
           setStartPokemon={setStartPokemon}
           setLimit={setLimit}
           limit={limit}
+          setIsLoading={setIsLoading}
         /></div>
     </div>
   )
