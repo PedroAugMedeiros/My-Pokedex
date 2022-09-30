@@ -34,10 +34,23 @@
 
   .pagination-button {
     width: 20%;
-    padding: 1.5%;
+    font-size: 300%;
   }
 
   .close-menu {
     right: 10%;
+  }
+}
+
+@media (min-width: 1281px) {
+  .pagination {
+    height: 15vh;
+    padding: 0;
+  }
+
+  .pagination-button {
+    width: 20%;
+    font-size: 200%;
+    padding: 1%;
   }
 }

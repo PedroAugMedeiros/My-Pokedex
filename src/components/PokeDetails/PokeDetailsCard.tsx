@@ -43,6 +43,21 @@ function PokeDetailsCard(props: any) {
     return [tratedHeight, tratedWeight]
   }
 
+  const combatePoints = (stat: any) => {
+
+    const xd = `${hp}`
+    const converted: number = parseInt(xd)
+    return converted;
+  }
+
+  const combateHp: number = combatePoints(hp)
+  const combateAtk: number = combatePoints(atk)
+  const combateDef: number = combatePoints(def)
+  const combateSpd: number = combatePoints(spd)
+  const combateXp: number = combatePoints(exp)
+
+  const combatStat = combateHp + combateAtk + combateDef + combateSpd + (combateXp * 10)
+
   const widthStyleHp = {
     width: `${convertStatusPoints(hp, null, null)}%`,
   }
@@ -147,9 +162,7 @@ function PokeDetailsCard(props: any) {
               <div className="container mr-5 bg-primary-details">
                 <div style={widthStyleExp} className="skill bg-[#7DB0DF] ">{`${exp}/300`}</div>
               </div>
-
             </div>
-
           </div>
         </section>
       </article>

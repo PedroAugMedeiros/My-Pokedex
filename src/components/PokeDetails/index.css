@@ -193,4 +193,9 @@
     margin-bottom: 20%;
     max-width: 80vh;
   }
+
+  .title {
+    margin-top: 10%;
+    margin-bottom: 15%;
+  }
 }
