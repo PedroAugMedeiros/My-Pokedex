@@ -15,9 +15,6 @@ function PokeCard(props: any) {
     getPokemons()
   }, [props.pokemon.url, pokeStyles])
 
-
-  console.log(mainType)
-
   const handleClick = () => {
     setShowDetails(true)
     setPokemonSelected({
@@ -26,9 +23,8 @@ function PokeCard(props: any) {
     })
   }
 
-
   return (
-    <div className={pokeStyles} onClick={handleClick} >
+    <div data-testId='pokeCards' className={pokeStyles} onClick={handleClick} >
       <img
         className='img flex justify-center items-start'
         src={pokemon?.sprites.other.home.front_default || pokemon?.sprites.front_default}

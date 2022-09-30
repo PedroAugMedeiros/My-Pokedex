@@ -13,10 +13,10 @@ export const SearchArea = () => {
   }
 
   return (
-    <div className='input-div fixed'>
+    <div data-testid='search-area' className='input-div fixed'>
       <input
         className='search-input p-1 rounded-md  border-none focus:outline-none'
-        value={searchInput} data-testid="input" placeholder='Pesquise Aqui!' onChange={({ target }) => handleChange(target.value)}></input>
+        value={searchInput} data-testid="search-input" placeholder='Pesquise Aqui!' onChange={({ target }) => handleChange(target.value)}></input>
     </div>
   );
 }

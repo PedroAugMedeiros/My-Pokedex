@@ -31,7 +31,9 @@ const Pagination = (
   }
 
   return (
-    <div className="pagination fixed bottom-0 w-full flex flex-row  bg-black-pagination space-x-4 items-center justify-center">
+    <div
+      data-testid='pagination'
+      className="pagination fixed bottom-0 w-full flex flex-row  bg-black-pagination space-x-4 items-center justify-center">
       <button
         className='pagination-button rounded-md w-1/4  bg-swap-page-buttons p-4 text-4xl'
         onClick={

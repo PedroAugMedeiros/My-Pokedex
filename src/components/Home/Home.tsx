@@ -4,17 +4,15 @@ import { useApi } from "../../hooks/useApi";
 import PokeCard from '../PokeCard/PokeCard'
 import './index.css';
 import { PokedexContext } from '../../context/PokedexContext';
-import Pagination from '../../components/Pagination/index';
+import Pagination from '../Pagination/index';
 import { Navigate } from 'react-router-dom';
-import SearchArea from '../SearchArea';
-import SearchIcon from '../../icons/searchIcon.png';
-import CloseMenuIcon from '../../icons/CloseMenuIcon.png';
-import PokeTitle from '../../Images/Title.png'
+import Header from '../Header';
 import Transition from '../Transition';
 
 function Home() {
   const [startPokemon, setStartPokemon] = useState(0)
   const [limit, setLimit] = useState(20)
+  const [showHeader, setShowHeader] = useState(false)
   const [showSearchArea, setShowSearchArea] = useState(false)
 
   const { getPokemons, isLoading, setIsLoading } = useApi(pokeApi)
@@ -26,13 +24,6 @@ function Home() {
     getPokemons()
     RenderPokeCards()
   }, [startPokemon, limit])
-
-  const handleClick = (show: boolean) => {
-    if (show === false) {
-      setSearchInput('')
-    }
-    setShowSearchArea(show)
-  }
 
   const RenderPokeCards = () => {
 
@@ -47,10 +38,8 @@ function Home() {
 
     return pokemons.map((pokemon, index) => {
       if (index >= startPokemon && index < startPokemon + limit) {
-        return (<PokeCard pokemon={pokemon} />)
+        return (<PokeCard data-testid='pokeCard' pokemon={pokemon} />)
       }
-
-      return null
     }
     )
   }
@@ -64,12 +53,11 @@ function Home() {
 
   return (
     <div>
-      <header id='header' className='flex header justify-center items-center m-0'>
-        <img className='poke-title w-6/4 m-3' src={PokeTitle} alt='pokeTitle'></img>
-        {showSearchArea ?
-          <><SearchArea /><button className='close-menu fixed right-5' onClick={() => handleClick(false)}><img className=' w-4/4 m-3' src={CloseMenuIcon} alt='closeMeunu'></img></button></> : <button className='open-search' onClick={() => handleClick(true)}><img className='flex justify-center items-center w-1/2 m-0' src={SearchIcon} alt='open-search'></img></button>}
-      </header>
-      <div className="pokedex w-full flex flex-wrap justify-center pb-60">
+      <Header
+        data-testid='header'
+        setShowHeader={setShowHeader} showHeader={showHeader} setSearchInput={setSearchInput} setShowSearchArea={setShowSearchArea} showSearchArea={showSearchArea} />
+      <div
+        data-TestId='pokeCards' className="pokedex w-full flex flex-wrap justify-center pb-60">
         {isLoading ? <Transition setIsLoading={setIsLoading} /> :
           RenderPokeCards()
         }
@@ -83,6 +71,7 @@ function Home() {
           setLimit={setLimit}
           limit={limit}
           setIsLoading={setIsLoading}
+          data-testid='pagination'
         /></div>
     </div>
   )
