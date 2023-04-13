@@ -1,7 +1,6 @@
 import React, { createContext, useState } from 'react';
 import { PokedexContextType, PokedexContextProps } from '../types';
 import { Pokemons, PokemonSelected } from '../interfaces/index';
-import { blob } from 'stream/consumers';
 
 const initialValue = {
   pokemons: [],
