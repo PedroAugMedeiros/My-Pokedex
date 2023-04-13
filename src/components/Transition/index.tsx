@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import PikachuGif from '../../transitions/run-pikachu-gif.gif'
 import SquirtleGif from '../../transitions/squirtle-transition.gif'
 import CharmanderGif from '../../transitions/charmander.gif'

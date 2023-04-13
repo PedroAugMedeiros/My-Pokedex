@@ -12,7 +12,6 @@ import Transition from '../Transition';
 function Home() {
   const [startPokemon, setStartPokemon] = useState(0)
   const [limit, setLimit] = useState(20)
-  const [showHeader, setShowHeader] = useState(false)
   const [showSearchArea, setShowSearchArea] = useState(false)
 
   const { getPokemons, isLoading, setIsLoading } = useApi(pokeApi)
@@ -57,10 +56,10 @@ function Home() {
     <div>
       <Header
         data-testid='header'
-        setShowHeader={setShowHeader} showHeader={showHeader} setSearchInput={setSearchInput} setShowSearchArea={setShowSearchArea} showSearchArea={showSearchArea} />
+        setSearchInput={setSearchInput} setShowSearchArea={setShowSearchArea} showSearchArea={showSearchArea} />
       <div
         data-TestId='pokeCards' className="pokedex w-full flex flex-wrap justify-center pb-60">
-        {isLoading ? <Transition setIsLoading={setIsLoading} /> :
+        {isLoading ? <Transition  /> :
           RenderPokeCards()
         }
 

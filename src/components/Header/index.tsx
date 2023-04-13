@@ -4,17 +4,19 @@ import CloseMenuIcon from '../../icons/CloseMenuIcon.png';
 import PokeTitle from '../../Images/Title.png'
 
 interface HeaderProps {
-  showSearchArea: boolean;
-  setShowSearchArea: (newState: boolean) => void;
-  setSearchInput: (newState: string) => void;
+  showSearchArea?: boolean;
+  setShowSearchArea?: (newState: boolean) => void;
+  setSearchInput?: (newState: string) => void;
 }
 
 function Header(props: HeaderProps) {
   const handleClick = (show: boolean) => {
-    if (show === false) {
+    if (show === false && props.setSearchInput) {
       props.setSearchInput('')
     }
+    if(props.setShowSearchArea) {
     props.setShowSearchArea(show)
+    }
   }
 
   return (
