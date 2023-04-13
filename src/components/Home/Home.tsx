@@ -20,17 +20,14 @@ function Home() {
   const { pokemons, showDetails, searchInput, setSearchInput
   } = useContext(PokedexContext);
 
-  useEffect(() => {
-    getPokemons()
-    RenderPokeCards()
-  }, [startPokemon, limit])
 
-  const RenderPokeCards = () => {
+
+  function RenderPokeCards() {
 
     if (searchInput !== '') {
       return pokemons.filter((item) => item.name.includes(searchInput)).map((pokemon, index) => {
         if (index >= startPokemon && index < startPokemon + limit) {
-          return (<PokeCard pokemon={pokemon} />)
+          return (<PokeCard key={pokemon.id} pokemon={pokemon} />)
         }
       }
       )
@@ -38,11 +35,16 @@ function Home() {
 
     return pokemons.map((pokemon, index) => {
       if (index >= startPokemon && index < startPokemon + limit) {
-        return (<PokeCard data-testid='pokeCard' pokemon={pokemon} />)
+        return (<PokeCard key={pokemon.id} data-testid='pokeCard' pokemon={pokemon} />)
       }
     }
     )
   }
+
+  useEffect(() => {
+    getPokemons()
+    RenderPokeCards()
+  }, [startPokemon, limit])
 
 
   if (showDetails) {

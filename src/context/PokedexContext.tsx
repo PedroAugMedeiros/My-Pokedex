@@ -1,21 +1,22 @@
-import { createContext, useState } from 'react';
+import React, { createContext, useState } from 'react';
 import { PokedexContextType, PokedexContextProps } from '../types';
 import { Pokemons, PokemonSelected } from '../interfaces/index';
+import { blob } from 'stream/consumers';
 
 const initialValue = {
   pokemons: [],
   showDetails: false,
   pokemonSelected: {
-    id: 0,
+    id: '0',
     url: ''
   },
   searchInput: '',
   typeFilter: '',
-  setPokemons: () => { },
-  setShowDetails: () => { },
-  setPokemonSelected: () => { },
-  setSearchInput: () => { },
-  setTypeFilter: () => { },
+  setPokemons: () => [],
+  setShowDetails: (newState: boolean) => newState,
+  setPokemonSelected: (newState: PokemonSelected) => newState,
+  setSearchInput: (newState: string) => newState,
+  setTypeFilter: (newState: string) => newState,
 };
 
 export const PokedexContext = createContext<PokedexContextType>(initialValue);

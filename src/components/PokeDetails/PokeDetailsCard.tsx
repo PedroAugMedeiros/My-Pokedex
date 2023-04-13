@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Transition from '../Transition';
 import PokeTitle from '../../Images/Title.png'
 
-function PokeDetailsCard(props: any) {
+function PokeDetailsCard() {
 
   const { pokemonSelected, setShowDetails, setSearchInput } = useContext(PokedexContext);
 
@@ -24,10 +24,10 @@ function PokeDetailsCard(props: any) {
   const exp = stats?.find((el, index) => index === 4);
 
 
-  const convertStatusPoints = (stat: any, height: any, weight: any) => {
+  const convertStatusPoints = (stat: number | undefined | null, height: number | null, weight: number | null) => {
 
     if (height === null) {
-      const initialNumber = stat?.toFixed(0) * 100
+      const initialNumber = Number(stat?.toFixed(0)) * 100
       const converted = initialNumber / 300
       return converted?.toFixed(0)
     }
@@ -35,28 +35,28 @@ function PokeDetailsCard(props: any) {
     const convertedHeight = height?.toString().split('')
     const convertedWeight = weight?.toString().split('')
 
-    const tratedHeight = `${convertedHeight?.find((el: any, index: any) => index === 0)}.${convertedHeight?.find((el: any, index: any) => index === 1) || '0'}`;
+    const tratedHeight = `${convertedHeight?.find((el, index: number) => index === 0)}.${convertedHeight?.find((el, index: number) => index === 1) || '0'}`;
 
-    const tratedWeight = `${convertedWeight?.find((el: any, index: any) => index === 0)}${convertedWeight?.find((el: any, index: any) => index === 1)}.${convertedWeight?.find((el: any, index: any) => index === 2) || '0'}`
+    const tratedWeight = `${convertedWeight?.find((el, index: number) => index === 0)}${convertedWeight?.find((el, index: number) => index === 1)}.${convertedWeight?.find((el, index: number) => index === 2) || '0'}`
 
 
     return [tratedHeight, tratedWeight]
   }
 
-  const combatePoints = (stat: any) => {
+  // const combatePoints = (stat: number | undefined) => {
 
-    const xd = `${hp}`
-    const converted: number = parseInt(xd)
-    return converted;
-  }
+  //   const xd = `${stat}`
+  //   const converted: number = parseInt(xd)
+  //   return converted;
+  // }
 
-  const combateHp: number = combatePoints(hp)
-  const combateAtk: number = combatePoints(atk)
-  const combateDef: number = combatePoints(def)
-  const combateSpd: number = combatePoints(spd)
-  const combateXp: number = combatePoints(exp)
+  // const combateHp: number = combatePoints(hp)
+  // const combateAtk: number = combatePoints(atk)
+  // const combateDef: number = combatePoints(def)
+  // const combateSpd: number = combatePoints(spd)
+  // const combateXp: number = combatePoints(exp)
 
-  const combatStat = combateHp + combateAtk + combateDef + combateSpd + (combateXp * 10)
+  // const combatStat = combateHp + combateAtk + combateDef + combateSpd + (combateXp * 10)
 
   const widthStyleHp = {
     width: `${convertStatusPoints(hp, null, null)}%`,
@@ -93,7 +93,8 @@ function PokeDetailsCard(props: any) {
     getPokemons()
   }, [pokeDetailsStyles])
 
-  const heightAndWeight = convertStatusPoints(null, pokemon?.height, pokemon?.weight)
+
+  const heightAndWeight = pokemon && convertStatusPoints(null, pokemon.height, pokemon.weight)
 
   if (isLoading) {
     return (
@@ -116,16 +117,16 @@ function PokeDetailsCard(props: any) {
         <section className='types flex flex-row justify-center items-center space-x-20 mb-5'>
           {types?.map((el) => {
             const typeDivStyles = `type w-1/4 text-center font-sans font-bold  text-1xl rounded-2xl p-1 ${el}`
-            return <div className={typeDivStyles}>{el}</div>
+            return <div key={String(el)} className={typeDivStyles}>{el}</div>
           })}
         </section>
         <section className='fisical-atributes flex flex-row justify-between items-center'>
           <div className='flex flex-col justify-center items-center weight w-1/4  font-serif '>
-            <h2 className='fisical-atributes text-second-details mb-3 align-baseline text-2xl'>{`${heightAndWeight[0]} M`}</h2>
+            <h2 className='fisical-atributes text-second-details mb-3 align-baseline text-2xl'>{`${heightAndWeight && heightAndWeight[0]} M`}</h2>
             <h3 className='fisical-atributes text-primary-details font-bold text-sm'>Altura</h3>
           </div>
           <div className='flex flex-col justify-center items-center weight w-1/4  font-serif  mx-4'>
-            <h2 className='fisical-atributes text-second-details mb-3 align-baseline text-2xl'>{`${heightAndWeight[1]} KG`}</h2>
+            <h2 className='fisical-atributes text-second-details mb-3 align-baseline text-2xl'>{`${heightAndWeight && heightAndWeight[1]} KG`}</h2>
             <h3 className='fisical-atributes  text-primary-details font-bold text-sm'>Peso</h3>
           </div>
         </section>

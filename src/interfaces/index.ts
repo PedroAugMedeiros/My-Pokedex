@@ -2,7 +2,7 @@ export interface Pokemons {
   name: string;
   url: string;
   id: string;
-};
+}
 
 export interface Pokemon {
   name: string;
@@ -29,9 +29,9 @@ export interface Pokemon {
       }
     }
   ];
-};
+}
 
 export interface PokemonSelected {
-  id: number;
+  id: string;
   url: string;
-};
+}

@@ -1,9 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useApi } from "../../hooks/useApi";
 import { PokedexContext } from '../../context/PokedexContext';
 import './index.css'
 
-function PokeCard(props: any) {
+interface PokeCardProps {
+  pokemon: {
+    url: string;
+    id: string;
+    name: string;
+  }
+}
+
+function PokeCard(props: PokeCardProps) {
 
   const { setShowDetails, setPokemonSelected } = useContext(PokedexContext);
   const { pokemon, getPokemons, mainType } = useApi(props.pokemon.url)

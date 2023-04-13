@@ -12,6 +12,12 @@ export function useApi(url: string) {
   const [image, setImage] = useState()
   const [type, setType] = useState([''])
 
+  interface Types {
+      type: {
+        name: string;
+      }
+  }
+
   const getPokemons = () => {
     Axios.get(url)
       .then(response => {
@@ -21,7 +27,7 @@ export function useApi(url: string) {
         }
         setPokemon(response.data)
         setImage(response.data)
-        setType(response.data.types.map((el: any) => el.type.name))
+        setType(response.data.types.map((el: Types) => el.type.name))
       })
       .catch(err => {
         setError(err);
