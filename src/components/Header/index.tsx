@@ -3,9 +3,14 @@ import SearchIcon from '../../icons/searchIcon.png';
 import CloseMenuIcon from '../../icons/CloseMenuIcon.png';
 import PokeTitle from '../../Images/Title.png'
 
-function Header(props: any) {
+interface HeaderProps {
+  showSearchArea: boolean;
+  setShowSearchArea: (newState: boolean) => void;
+  setSearchInput: (newState: string) => void;
+}
+
+function Header(props: HeaderProps) {
   const handleClick = (show: boolean) => {
-    console.log('showhandleclick')
     if (show === false) {
       props.setSearchInput('')
     }
